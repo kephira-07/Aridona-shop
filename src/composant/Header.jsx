@@ -161,7 +161,7 @@ const PCHeader = () => {
                 
                 
                 <div className='md:col-span-1 overflow-hidden'> <img src={img8} alt="Gallery item" className="h-full w-full object-cover cursor-pointer transition-transform duration-300 hover:scale-110 "/></div>
-                <div className='md:col-span-2 flex justify-center items-center '> <a href="/Collection" className='w-100 h-12 rounded-3xl bg-white text-amber-500 border-2 border-amber-500 hover:bg-amber-500 hover:text-white cursor-pointer text-2xl font-Lato'>Notre boutique </a></div>
+                <div className='md:col-span-2 flex justify-center items-center  '> <a href="/Collection" className='w-100 h-12 rounded-3xl bg-white text-amber-500 border-1 border-amber-500 hover:bg-amber-500 hover:text-white cursor-pointer text-xl font-Alice text-center  '>Notre boutique </a></div>
                    </div >
                 
                    </div>
@@ -274,7 +274,7 @@ const MobileHeader = () => {
           >
             {ITEMS.map((item) => (
               <div key={item.id} className="flex-shrink-0 w-full h-150  relative">
-               <img src={item.src} alt={item.title}  className={`w-full h-full object-cover transition-transform duration-[4000ms] ${isPaused ? 'scale-105' : 'scale-100'}`}  draggable="false" /> )  
+               <img src={item.src} alt={item.title}  className={`w-full h-full object-cover transition-transform duration-4000ms ${isPaused ? 'scale-105' : 'scale-100'}`}  draggable="false" /> )  
 
                 {/* Overlay avec titre */}
                 <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/60 to-transparent">
