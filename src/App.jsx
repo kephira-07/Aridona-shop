@@ -1,6 +1,6 @@
 import './App.css'
 
-import Navbar from './composant/Header'
+import Header from './composant/Header'
 import Presentation from './composant/Presentation'
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
   return (
     <>
      
-      <Navbar/> 
+      <Header/> 
       <Presentation/> 
      
         
