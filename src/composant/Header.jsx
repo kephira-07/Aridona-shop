@@ -41,7 +41,7 @@ export default function Navbar() {
     <div>
       
      <div >
-             {isMobile ?<MobileHeader/> : <PCHeader />}
+             {isMobile ?<MobileHeader/> : <PCHeader/>}
               
                    
      </div> 
@@ -273,11 +273,11 @@ const MobileHeader = () => {
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
             {ITEMS.map((item) => (
-              <div key={item.id} className="flex-shrink-0 w-full h-150  relative">
+              <div key={item.id} className="shrink-0 w-full h-150  relative">
                <img src={item.src} alt={item.title}  className={`w-full h-full object-cover transition-transform duration-4000ms ${isPaused ? 'scale-105' : 'scale-100'}`}  draggable="false" /> )  
 
                 {/* Overlay avec titre */}
-                <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/60 to-transparent">
+                <div className="absolute inset-x-0 bottom-0 p-6 bg-transparent">
                   <p className="text-white text-center text-xs uppercase tracking-widest font-light">
                     {item.title}
                   </p>
@@ -287,7 +287,8 @@ const MobileHeader = () => {
           </div>
 
           {/* Reflet vitré (effet décoratif) */}
-          <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-white/5 pointer-events-none" />
+          
+          
         </div>
 
         </div>
