@@ -1,302 +1,177 @@
-import React, { useState, useEffect,useCallback } from 'react';
-import { Search, ShoppingCart, User, Menu, X, Heart } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Search, ShoppingCart, User, Menu, X, Heart,ChevronRight } from 'lucide-react';
 import Collection from './Collection';
 import logoAridona from '../assets/logoAridonaC.svg';
 import logo2 from '../assets/logo2.svg';
-import im1 from '../assets/im1.jpg'; 
-import img2 from '../assets/img2.jpg';
-import img3 from '../assets/img3.jpg';
 
- import img5 from '../assets/img5.jpg';
-  import img6 from '../assets/img6.jpg';
- import img7 from '../assets/img7.jpg';
- import img8 from '../assets/img8.jpg'; 
-// Import des styles de Swiper
-import 'swiper/css';
-import 'swiper/css/autoplay'; // Nécessaire pour le défilement automatique
+// --- COMPOSANT HEADER (BARRE DE NAVIGATION) ---
 
+export default function Header() {
+  
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-
-function useWindowSize() {
-  const [isMobile, setIsMobile] = useState(false);
-
+  // Gestion du scroll ultra-légère
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  return isMobile;
-}
+  // Bloquer le scroll quand le menu mobile est ouvert
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [isMobileMenuOpen]);
 
-export default function Navbar() {
-
-  const isMobile = useWindowSize();
-  
-   
-
-  
   return (
     <div>
+      <header
+        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+          isScrolled ? 'bg-white/95 backdrop-blur-md shadow-sm' : 'bg-white'
+        }`}
+      >
       
-     <div >
-             {isMobile ?<MobileHeader/> : <PCHeader/>}
-              
-                   
-     </div> 
+
+        {/* --- MAIN NAVBAR --- */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-    </div>
-    
-  )
-}
-const PCHeader = () => {
-      const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 60) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-  return(
-    <div>
-      <nav 
-      className={`transition-all  duration-800 ease-initial ${
-        isScrolled 
-          ? 'fixed top-0 left-0 border-0 right-0 z-100 bg-white/80  h-20 backdrop-blur-sm' 
-          : ' bg-white'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-2 h-full flex items-center justify-between">
-        
-        {/* LOGO IMAGE : Taille et position dynamiques */}
-        <div className="flex items-center justify-self-start cursor-pointer">
-          <img 
-            src={logoAridona} 
-            alt="Logo" 
-            className={`transition-all duration-1000 ease-in-out object-contain overflow-hidden ${
-              isScrolled 
-                ? 'h-30 w-auto' // Taille réduite au scroll
-                : 'h-60 w-auto' // Taille imposante au début
-            }`}
-          />
-        </div>
-
-       
-        <div className={`md:flex flex-1 max-w-md mx-8 transition-all duration-600 transform opacity-100 translate-y-0 visible ${
-          isScrolled 
-            ? 'flex-1 max-w-md mx-8' 
-            : 'flex-1 w-full mx-8'
-        }`}>
-          <div className="relative w-full">
-            <input 
-              type="text" 
-              placeholder="Rechercher un produit..." 
-              className="w-full h-10 bg-gray-100 border-dashed border-2 border-amber-500 rounded-full py-2 pl-10 pr-4 focus:ring-2 focus:ring-amber-500 transition-all outline-none text-sm"
-            />
-            <Search className="absolute left-3 top-2.5 text-gray-400 w-4 h-4" />
-          </div>
-        </div>
-
-        {/* ACTIONS : Panier, Compte, etc. */}
-        <div className="flex items-center gap-4">
-          {!isScrolled && (
-            <div className="hidden lg:flex items-center gap-6 mr-6 text-lg font-Roboto text-black">
-              <a href="#" className="hover:text-amber-600 transition-colors">Accueil</a>
-              <a href="#" className="hover:text-amber-600 transition-colors">Collections</a>
-              <a href="#" className="hover:text-amber-600 transition-colors">Offres</a>
+          {/* VERSION PC (Cachée sur Mobile) */}
+          <div className="hidden md:flex items-center justify-between h-24 transition-all duration-300">
+            {/* Logo Arilona (Texte stylisé pour l'exemple, à remplacer par ton img) */}
+            <div className={`font-serif text-3xl tracking-widest text-amber-600 transition-all duration-500 ${isScrolled ? 'scale-90' : 'scale-100'}`}>
+             <div className="flex items-center justify-self-start cursor-pointer">
+                       <img 
+                         src={logoAridona} 
+                         alt="Logo" 
+                         className={`transition-all duration-1000 ease-in-out object-contain overflow-hidden ${
+                           isScrolled 
+                             ? 'h-30 w-auto' // Taille réduite au scroll
+                             : 'h-40 w-auto' // Taille imposante au début
+                         }`}
+                       />
+                     </div>
             </div>
-          )}
 
-          <div className="flex items-center gap-2 md:gap-4">
-            <button className="p-2 text-gray-700 hover:bg-gray-100 rounded-full transition-colors relative">
-              <ShoppingCart className="w-7 h-7" />
-              <span className="absolute top-0 right-0 w-4 h-4 bg-amber-500 text-white text-[10px] flex items-center justify-center rounded-full"></span>
-            </button>
-            <button className="p-2 text-black hover:bg-gray-100 rounded-full transition-colors">
-              <User className="w-7 h-7" />
-            </button>
-             <button className='p-2 text-black hover:bg-gray-100 rounded-full transition-colors  col-span-1'>
-                  <Heart className='w-7 h-7'/>
-                </button>
-            
-            <button 
-              className="md:hidden p-2 text-gray-700"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
-              {isMobileMenuOpen ? <X /> : <Menu />}
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* MENU MOBILE */}
-      <div className={`absolute top-full left-0 right-0 bg-white border-t transition-all duration-600 shadow-xl overflow-hidden ${
-        isMobileMenuOpen ? 'max-h-36' : 'max-h-0'
-      }`}>
-        <div className="p-6 flex flex-col gap-4">
-          <a href="#" className="py-2 text-gray-800 font-medium">Accueil</a>
-          <a href="#" className="py-2 text-gray-800 font-medium">Collections</a>
-          <a href="#" className="py-2 text-gray-800 font-medium">Mon Compte</a>
-        </div>
-      </div>
-    </nav>
-      <div className='bg-[#fffaf5] m-0 p-0 h-screen flex items-center justify-center'>
-       {/* Grille Principale */}
-                <div className="grid grid-cols-3 grid-rows-3 sm:grid-cols-2 md:grid-cols-4 auto-rows-[150px] gap-1 h-full w-full">
-                 <div className=' md:col-span-1 md:row-span-2 overflow-hidden'><img src={im1} alt="Gallery item" className="h-full w-full object-cover cursor-pointer transition-transform duration-300   hover:scale-110 "/></div>
-                 <div className='md:row-span-2 overflow-hidden'> <img src={img2} alt="Gallery item" className="h-full w-full object-cover cursor-pointer transition-transform duration-300 hover:scale-110 "/></div> 
-                <div className='md:col-span-1 overflow-hidden'> <img src={img5} alt="Gallery item" className="h-full w-full object-cover cursor-pointer transition-transform duration-300 hover:scale-110 "/></div>
-                <div className='md:col-span-1 overflow-hidden'> <img src={img6} alt="Gallery item" className="h-full w-full object-cover cursor-pointer transition-transform duration-300 hover:scale-110 "/></div>
-                
-                <div className='md:col-span-1 overflow-hidden'> <img src={img7} alt="Gallery item" className="h-full w-full object-cover cursor-pointer transition-transform duration-300 hover:scale-110 "/></div>
-                <div className='md:col-span-1 md:row-span-2 overflow-hidden'> <img src={img3} alt="Gallery item" className="h-full w-full object-cover cursor-pointer transition-transform duration-300 hover:scale-110 hover:bg-black-50 "/></div>
-                
-                
-                <div className='md:col-span-1 overflow-hidden'> <img src={img8} alt="Gallery item" className="h-full w-full object-cover cursor-pointer transition-transform duration-300 hover:scale-110 "/></div>
-                <div className='md:col-span-2 flex justify-center items-center  '> <a href="/Collection" className='w-100 h-12 rounded-3xl bg-white text-amber-500 border-1 border-amber-500 hover:bg-amber-500 hover:text-white cursor-pointer text-xl font-Alice text-center  '>Notre boutique </a></div>
-                   </div >
-                
-                   </div>
-    </div>
-
-  )
-}
-
-const ITEMS = [
-  { id: 1, type: 'image', src: img2, title: 'Bague Éclat Éternel' },
-  { id: 2, type: 'image', src: img3, title: 'Alliance Or Pur' },
-  { id: 3, type: 'image', src: img5, title: 'Collier Signature Arilona' },
-  { id: 4, type: 'image', src: img6, title: 'Bracelet Jonc Fin' },
-];
-
-const MobileHeader = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-      const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 60) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Fonction pour passer à l'image suivante (mémorisée)
-  const nextSlide = useCallback(() => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % ITEMS.length);
-  }, []);
-
-  // Effet pour le défilement automatique
-  useEffect(() => {
-    if (isPaused) return; // Ne pas lancer l'intervalle si en pause
-    const intervalId = setInterval(nextSlide, 4000); // Change toutes les 4 secondes
-    return () => clearInterval(intervalId); // Nettoyage à la désactivation
-  }, [isPaused, nextSlide]);
-
-  // Gestionnaires de pause (souris + tactile)
-  const handlePause = () => setIsPaused(true);
-  const handleResume = () => setIsPaused(false);
-
-  return (
-    <div>
-      <nav className={`transition-all  p-2  duration-800 ease-initial ${
-        isScrolled 
-          ? 'fixed top-0 left-0 border-0 right-0 z-100 bg-white/80  h-25 backdrop-blur-sm' 
-          : ' bg-white h-30'
-      }`}
-    >
-      <div className=" h-full grid grid-rows-2 grid-cols-5 gap-2 cursor-pointer  justify-between items-center   ">         
-              <img 
-                src={logo2} 
-                alt="Logo" 
-                className="object-contain overflow-hidden h-50 w-50 col-span-2"
-              />
-              <button className="p-2 text-gray-700 hover:bg-gray-100 rounded-full transition-colors relative  col-span-1">
-                  <ShoppingCart className="w-7 h-7" />
-                  <span className="absolute top-0 right-0 w-4 h-4 bg-amber-500 text-white text-[10px] flex items-center justify-center rounded-full"></span>
-                </button>
-                <button className="p-2 text-black hover:bg-gray-100 rounded-full transition-colors  col-span-1">
-                  <User className="w-7 h-7" />
-                </button>
-                <button className='p-2 text-black hover:bg-gray-100 rounded-full transition-colors  col-span-1'>
-                  <Heart className='w-7 h-7'/>
-                </button>
-         
-         
-             <button 
-                  className=" p-2 text-black w-1/3 col-span-1"
-                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                >
-                  {isMobileMenuOpen ? <X /> : <Menu />}
-                </button>
-             <div className="relative w-full col-span-4">
-                <input 
-              type="text" 
-              placeholder="Rechercher un produit..." 
-              className="w-full h-10 bg-gray-100 border-dashed border-2 border-amber-500 rounded-full py-2 pl-10 pr-4 focus:ring-2 focus:ring-amber-500 transition-all outline-none text-sm"
-              />
-            <Search className="absolute left-3 top-2.5 text-gray-400 w-4 h-4" />
-          </div>
-          </div>
-     
-       
-      </nav>
-      <div className="bg-[#fffaf5] m-0 p-0 h-150 ">
-      {/* Conteneur principal centré */}
-      <div className=" w-full h-full flex items-center  flex-col  font-sans overflow-hidden ">
-        
-        {/* Zone du carrousel */}
-        <div
-          className="relative overflow-hidden rounded-2rem   bg-gray-50 w-full h-auto shadow-lg border border-gray-100 touch-none cursor-pointer"
-          onMouseEnter={handlePause}
-          onMouseLeave={handleResume}
-          onTouchStart={handlePause}
-          onTouchEnd={handleResume}
-          >
-          {/* Bande défilante */}
-          <div
-            className="flex h-full transition-transform duration-500 ease-out"
-            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-          >
-            {ITEMS.map((item) => (
-              <div key={item.id} className="shrink-0 w-full h-150  relative">
-               <img src={item.src} alt={item.title}  className={`w-full h-full object-cover transition-transform duration-4000ms ${isPaused ? 'scale-105' : 'scale-100'}`}  draggable="false" /> )  
-
-                {/* Overlay avec titre */}
-                <div className="absolute inset-x-0 bottom-0 p-6 bg-transparent">
-                  <p className="text-white text-center text-xs uppercase tracking-widest font-light">
-                    {item.title}
-                  </p>
-                </div>
+            {/* Barre de recherche (BazarChic style : centrale et large) */}
+            <div className="flex-1 max-w-2xl mx-12">
+              <div className="relative group">
+                <input
+                  type="text"
+                  placeholder="Rechercher un bijou, une collection..."
+                  className="w-full h-11 bg-gray-50 border border-gray-200 rounded-full py-2 pl-12 pr-4 focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all outline-none text-sm group-hover:border-amber-300"
+                />
+                <Search className="absolute left-4 top-3 text-gray-400 w-5 h-5 transition-colors group-hover:text-amber-500" />
               </div>
+            </div>
+
+            {/* Icônes */}
+            <div className="flex items-center gap-6">
+              <button className="text-gray-800 hover:text-amber-500 transition-colors">
+                <User className="w-6 h-6" />
+              </button>
+              <button className="text-gray-800 hover:text-amber-500 transition-colors">
+                <Heart className="w-6 h-6" />
+              </button>
+              <button className="text-gray-800 hover:text-amber-500 transition-colors relative">
+                <ShoppingCart className="w-6 h-6" />
+                <span className="absolute -top-1 -right-2 w-4 h-4 bg-amber-500 text-white text-[10px] flex items-center justify-center rounded-full font-bold">2</span>
+              </button>
+            </div>
+          </div>
+
+          {/* BARRE DE CATÉGORIES PC (Cachée sur scroll ou maintenue selon le choix) */}
+          <div className={`hidden md:flex items-center justify-center gap-10 pb-4 transition-all duration-300 origin-top ${isScrolled ? 'hidden opacity-0 h-0 pb-0' : 'opacity-100 h-auto'}`}>
+            {['Nouveautés', 'Bagues', 'Colliers', 'Bracelets', 'Mariage', 'Offres'].map((item) => (
+              <a key={item} href="#" className="text-sm font-medium text-gray-600 hover:text-amber-500 uppercase tracking-wider transition-colors">
+                {item}
+              </a>
             ))}
           </div>
 
-          {/* Reflet vitré (effet décoratif) */}
-          
-          
-        </div>
+          {/* VERSION MOBILE (Cachée sur PC) - Basée sur ton design Grid 2x5 */}
+          <div className="md:hidden w-full h-35 py-3">
+            <div className="grid grid-rows-[50px_2fr_75px] grid-cols-5 gap-y-4 gap-x-2 items-center">
+              
+              {/* Ligne 1 : Logo (Col 1-2) et Icônes (Col 3-5) */}
+              <div className="col-span-2 font-serif text-xl tracking-widest text-amber-600 truncate px-1">
+                  <img 
+                               src={logo2} 
+                               alt="Logo" 
+                               className="object-contain overflow-hidden h-50 w-50 col-span-2"
+                             />
+                        
+              </div>
+              <button className="col-span-1 flex justify-center p-2 text-gray-700 hover:bg-gray-100 rounded-full relative transition-colors">
+                <ShoppingCart className="w-6 h-6" />
+                <span className="absolute top-0 right-1 w-4 h-4 bg-amber-500 text-white text-[10px] flex items-center justify-center rounded-full font-bold">2</span>
+              </button>
+              <button className="col-span-1 flex justify-center p-2 text-black hover:bg-gray-100 rounded-full transition-colors">
+                <User className="w-6 h-6" />
+              </button>
+              <button className="col-span-1 flex justify-center p-2 text-black hover:bg-gray-100 rounded-full transition-colors">
+                <Heart className="w-6 h-6" />
+              </button>
 
+              {/* Ligne 2 : Menu Burger (Col 1) et Recherche (Col 2-5) */}
+              <button 
+                className="col-span-1 flex justify-center p-2 text-black hover:bg-gray-100 rounded-full transition-colors"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              >
+                {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
+              <div className="col-span-4 relative w-full pr-1">
+                <input
+                  type="text"
+                  placeholder="Rechercher un produit..."
+                  className="w-full h-10 bg-gray-50 border-dashed border-2 border-amber-500 rounded-full py-2 pl-10 pr-4 focus:ring-2 focus:ring-amber-500 transition-all outline-none text-sm"
+                />
+                <Search className="absolute left-3 top-2.5 text-gray-400 w-5 h-5" />
+              </div>
+
+            </div>
+          </div>
+        </div>
+       
+      </header>
+
+       
+
+      {/* --- MENU TIROIR MOBILE (DRAWER) --- */}
+      <div 
+        className={`fixed inset-0 z-[100] bg-black/50 transition-opacity duration-300 md:hidden ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
+        onClick={() => setIsMobileMenuOpen(false)}
+      >
+        <div 
+          className={`absolute top-0 left-0 w-4/5 max-w-sm h-full bg-white shadow-2xl transition-transform duration-300 ease-in-out flex flex-col ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}
+          onClick={e => e.stopPropagation()} // Empêche la fermeture si on clique dans le menu
+        >
+          <div className="flex items-center justify-between p-4 border-b">
+            <div > <img 
+                               src={logo2} 
+                               alt="Logo" 
+                               className="object-contain overflow-hidden h-50 w-50 col-span-2"
+                             /></div>
+            <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 text-gray-500 hover:bg-gray-100 rounded-full">
+              <X className="w-6 h-6" />
+            </button>
+          </div>
+          <div className="flex flex-col py-4 overflow-y-auto">
+            {['Nouveautés', 'Bagues', 'Colliers', 'Bracelets', 'Mariage', 'Mon Compte'].map((item) => (
+              <a key={item} href="#" className="flex items-center justify-between px-6 py-4 text-gray-800 border-b border-gray-50 hover:bg-gray-50 hover:text-amber-500 transition-colors">
+                <span className="font-medium">{item}</span>
+                <ChevronRight className="w-4 h-4 text-gray-400" />
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </div>
-    
-
-      
-  );
-};
+  )
+}
 

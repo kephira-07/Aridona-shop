@@ -5,6 +5,8 @@ import App from './App.jsx'
 import {createBrowserRouter,RouterProvider,Outlet} from 'react-router-dom'
 import './index.css'
 import Collection from './composant/Collection.jsx'
+import Boutique from './composant/Boutique.jsx'
+import PageProduit from './composant/PageProduit.jsx'
 
 
 const router = createBrowserRouter([
@@ -15,11 +17,11 @@ const router = createBrowserRouter([
   },
  {
  
-  path: "Collection",
+  path: "boutique",
   element:(
     <>
-      <Collection/>
-      <Outlet/>
+      <Boutique/>
+      {/* <Outlet/> */}
    
         
    </> 
@@ -32,10 +34,10 @@ const router = createBrowserRouter([
     //     element: <Pojo/>}
     // ]
  ) }
-  // {
-  //   path: "*",
-  //   element: <ErrorGEN/>
-  // }
+   ,{
+   path: "boutique/pageProduit/:productId",
+    element: <PageProduit/>,
+   }
 ]) ;  
 
 ReactDOM.createRoot(document.getElementById('root')).render(
