@@ -97,14 +97,14 @@ export default function Hero() {
         {/* Bouton Global */}
         <div className="mt-5 text-center">
             <a href="/boutique" className="px-20 py-2 bg-amber-500 text-white rounded-3xl font-sans  hover:bg-amber-600 transition-colors shadow-lg shadow-amber-500/30">
-              Visiter la boutique.......
+              Visiter la boutique
             </a>
         </div>
 
       </div>
         {/* --- BANDEAU ANNONCE (Optionnel) --- */}
         <div className="bg-amber-950 text-white text-xs text-center py-1.5 mt-5 font-light tracking-widest hidden md:block">
-          LIVRAISON OFFERTE À PARTIR DE 150€ D'ACHAT
+          LIVRAISON OFFERTE À PARTIR DE 150fcf D'ACHAT
         </div>
     </main>
   );
