@@ -3,9 +3,10 @@ import { Search, ShoppingCart, User, Menu, X, Heart,ChevronRight } from 'lucide-
 export default function Collection() {
   return (
     <div>        
-        <FeaturedProducts />
+        {/* <FeaturedProducts />
       <BrandStory />
-      <Footer />
+      <Footer /> */}
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, repudiandae esse. Nulla, ducimus. Minima sunt, iure distinctio cupiditate voluptatibus quos unde maxime numquam magnam incidunt optio! Illum cumque rem cum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem culpa tempore quaerat commodi doloribus obcaecati, ea consequuntur quidem, eos labore omnis praesentium dolorem! Nemo, praesentium dignissimos. Dolorum, totam. Laborum, temporibus!
      </div>
     )
  }
