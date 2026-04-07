@@ -1,5 +1,5 @@
 import React, { useState, useEffect,useCallback } from 'react';
-import { Search, ShoppingCart, User, Menu, X, Heart,ChevronRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 import im1 from '../assets/im1.jpg'; 
 import img2 from '../assets/img2.jpg';
@@ -96,9 +96,12 @@ export default function Hero() {
 
         {/* Bouton Global */}
         <div className="mt-5 text-center">
-            <a href="/boutique" className="px-20 py-2 bg-amber-500 text-white rounded-3xl font-sans  hover:bg-amber-600 transition-colors shadow-lg shadow-amber-500/30">
-              Visiter la boutique
-            </a>
+            <Link 
+  to="/boutique" 
+  className="px-20 py-2 bg-amber-500 text-white rounded-3xl font-sans hover:bg-amber-600 transition-colors shadow-lg shadow-amber-500/30"
+>
+  Visiter la boutique
+</Link>
         </div>
 
       </div>
