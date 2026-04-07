@@ -43,7 +43,7 @@ export default function Hero() {
       <div className="max-w-10xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center">
        
         {/* --- GRILLE PC --- */}
-        <div className="hidden md:grid grid-cols-4 grid-rows-2 gap-2 h-[600px]">
+        <div className="hidden md:grid grid-cols-4 grid-rows-2 gap-2 h-[450px]">
           <div className="col-span-2 row-span-2 relative overflow-hidden group ">
             <img src={images[0].src} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Bijou" />
             <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
@@ -61,7 +61,7 @@ export default function Hero() {
         </div>
 
         {/* --- CARROUSEL MOBILE (Ton design avec animation) --- */}
-        <div className="md:hidden w-full h-175 mt-25 flex items-center flex-col overflow-hidden px-2">
+        <div className="md:hidden w-full h-[200px] mt-25 flex items-center flex-col overflow-hidden px-2">
           <div
             className="relative overflow-hidden rounded-2xl bg-gray-50 w-full h-full shadow-lg border border-gray-100 touch-none cursor-pointer"
             onMouseEnter={handlePause}
