@@ -61,7 +61,7 @@ export default function Hero() {
         </div>
 
         {/* --- CARROUSEL MOBILE (Ton design avec animation) --- */}
-        <div className="md:hidden w-full h-full mt-25 flex items-center flex-col overflow-hidden px-2">
+        <div className="md:hidden w-full h-175 mt-25 flex items-center flex-col overflow-hidden px-2">
           <div
             className="relative overflow-hidden rounded-2xl bg-gray-50 w-full h-full shadow-lg border border-gray-100 touch-none cursor-pointer"
             onMouseEnter={handlePause}
