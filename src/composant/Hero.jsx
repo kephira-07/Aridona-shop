@@ -39,7 +39,7 @@ export default function Hero() {
   const handlePause = () => setIsPaused(true);
   const handleResume = () => setIsPaused(false);
   return (  
-    <main className=" md:pt-35 pb-12 mt-15 bg-[#fffaf5] h-full">
+    <main className=" md:pt-35 pb-12 mt-15 bg-[#fffaf5] h-[700px]">
       <div className="max-w-10xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center">
        
         {/* --- GRILLE PC --- */}
