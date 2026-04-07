@@ -8,37 +8,22 @@ import Collection from './composant/Collection.jsx'
 import Boutique from './composant/Boutique.jsx'
 import PageProduit from './composant/PageProduit.jsx'
 
-
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App/>,
-    // errorElement: <Errr/> 
+    element: <App />,
   },
- {
- 
-  path: "boutique",
-  element:(
-    <>
-      <Boutique/>
-      {/* <Outlet/> */}
-   
-        
-   </> 
-    // ),
-    // children: [{
-    //    path: "/about/Team",
-    //     element: <Team/>},
-    //   {
-    //    path: "/about/Pojo",
-    //     element: <Pojo/>}
-    // ]
- ) }
-   ,{
-   path: "boutique/pageProduit/:productId",
-    element: <PageProduit/>,
-   }
-]) ;  
+  {
+    path: "boutique",
+    element: <Boutique />,
+    children: [
+      {
+        path: "pageProduit/:productId",
+        element: <PageProduit />,
+      },
+    ],
+  },
+]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

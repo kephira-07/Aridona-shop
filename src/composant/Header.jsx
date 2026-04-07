@@ -36,10 +36,14 @@ export default function Header() {
           isScrolled ? 'bg-white/95 backdrop-blur-md shadow-sm' : 'bg-white'
         }`}
       >
+       {/* --- BANDEAU ANNONCE (Optionnel) --- */}
+        <div className="bg-amber-950 text-white text-xs text-center py-2  font-light tracking-widest hidden md:block">
+          LIVRAISON OFFERTE À PARTIR DE 150fcf D'ACHAT
+        </div>
       
 
         {/* --- MAIN NAVBAR --- */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 mt-5 sm:px-6 lg:px-8">
           
           {/* VERSION PC (Cachée sur Mobile) */}
           <div className="hidden md:flex items-center justify-between h-24 transition-all duration-300">
@@ -64,9 +68,9 @@ export default function Header() {
                 <input
                   type="text"
                   placeholder="Rechercher un bijou, une collection..."
-                  className="w-full h-11 bg-gray-50 border border-gray-200 rounded-full py-2 pl-12 pr-4 focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all outline-none text-sm group-hover:border-amber-300"
+                  className="w-full h-11 bg-gray-50 rounded-full py-2 pl-12 pr-4  border-2 border-dashed  border-amber-700  focus:ring-2 focus:ring-amber-700 focus:border-transparent transition-all outline-none text-sm"
                 />
-                <Search className="absolute left-4 top-3 text-gray-400 w-5 h-5 transition-colors group-hover:text-amber-500" />
+                <Search className="absolute left-4 top-3 text-gray-600 w-5 h-5 transition-colors group-hover:text-amber-500" />
               </div>
             </div>
 
@@ -86,7 +90,7 @@ export default function Header() {
           </div>
 
           {/* BARRE DE CATÉGORIES PC (Cachée sur scroll ou maintenue selon le choix) */}
-          <div className={`hidden md:flex items-center justify-center gap-10 pb-4 transition-all duration-300 origin-top ${isScrolled ? 'hidden opacity-0 h-0 pb-0' : 'opacity-100 h-auto'}`}>
+          <div className={`hidden md:flex items-center justify-center gap-10 pb-4 transition-all duration-300 origin-top `}>
             {['Nouveautés', 'Bagues', 'Colliers', 'Bracelets', 'Mariage', 'Offres'].map((item) => (
               <a key={item} href="#" className="text-sm font-medium text-gray-600 hover:text-amber-500 uppercase tracking-wider transition-colors">
                 {item}

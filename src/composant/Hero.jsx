@@ -39,11 +39,11 @@ export default function Hero() {
   const handlePause = () => setIsPaused(true);
   const handleResume = () => setIsPaused(false);
   return (  
-    <main className="pt-25 md:pt-35 pb-12 bg-[#fffaf5] min-h-screen">
+    <main className=" md:pt-35 pb-12 mt-15 bg-[#fffaf5] h-full">
       <div className="max-w-10xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center">
        
         {/* --- GRILLE PC --- */}
-        <div className="hidden md:grid grid-cols-4 grid-rows-2 gap-4 h-[600px]">
+        <div className="hidden md:grid grid-cols-4 grid-rows-2 gap-2 h-[600px]">
           <div className="col-span-2 row-span-2 relative overflow-hidden group ">
             <img src={images[0].src} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Bijou" />
             <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
@@ -61,7 +61,7 @@ export default function Hero() {
         </div>
 
         {/* --- CARROUSEL MOBILE (Ton design avec animation) --- */}
-        <div className="md:hidden w-full h-[500px] flex items-center flex-col overflow-hidden px-4">
+        <div className="md:hidden w-full h-full mt-25 flex items-center flex-col overflow-hidden px-2">
           <div
             className="relative overflow-hidden rounded-2xl bg-gray-50 w-full h-full shadow-lg border border-gray-100 touch-none cursor-pointer"
             onMouseEnter={handlePause}
@@ -102,10 +102,7 @@ export default function Hero() {
         </div>
 
       </div>
-        {/* --- BANDEAU ANNONCE (Optionnel) --- */}
-        <div className="bg-amber-950 text-white text-xs text-center py-1.5 mt-5 font-light tracking-widest hidden md:block">
-          LIVRAISON OFFERTE À PARTIR DE 150fcf D'ACHAT
-        </div>
+       
     </main>
   );
 };

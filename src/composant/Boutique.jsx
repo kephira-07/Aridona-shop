@@ -11,7 +11,7 @@ import { Search, ShoppingCart, User, Menu, X, Heart, SlidersHorizontal, ChevronD
         <div className="hidden md:flex gap-8 text-sm uppercase tracking-widest text-gray-500">j
           <a href="/" className="hover:text-[#7B5C46] transition-colors">Accueil</a>
           <a href="/boutique" className="text-[#7B5C46] font-medium border-b border-[#7B5C46]">Boutique</a>
-          <a href="#" className="hover:text-[#7B5C46] transition-colors">Univers</a>
+       
         </div>
         <div className="flex items-center gap-4 text-gray-800">
           <Search className="w-5 h-5 cursor-pointer hover:text-[#7B5C46]" />
