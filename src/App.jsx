@@ -3,12 +3,14 @@ import Header from './composant/Header';
 import Hero from './composant/Hero';
 import Collection from './composant/Collection';
 import Boutique from './composant/Boutique';
+import BandeAnnonce from './composant/BandeAnnonce';
 
 
 
 export default function App() {
   return (
-    <div className="font-sans antialiased text-gray-900">
+    <div >
+      <BandeAnnonce/>
       <Header/>
       <Hero/>
       <Collection/>

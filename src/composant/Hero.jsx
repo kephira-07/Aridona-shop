@@ -39,8 +39,8 @@ export default function Hero() {
   const handlePause = () => setIsPaused(true);
   const handleResume = () => setIsPaused(false);
   return (  
-    <main className=" md:pt-2 pb-12 mt-15 bg-[#fffaf5] h-[700px]">
-      <div className="max-w-10xl mx-auto px-2  h-full flex flex-col justify-center">
+    <main className=" md:pt-30  mt-15 bg-[#fffaf5] h-[800px]">
+      <div className="max-w-10xl mx-auto px-1.5  h-full flex flex-col justify-center">
        
         {/* --- GRILLE PC --- */}
         <div className="hidden md:grid grid-cols-4 grid-rows-2 gap-2 h-[450px]">
@@ -61,7 +61,7 @@ export default function Hero() {
         </div>
 
         {/* --- CARROUSEL MOBILE (Ton design avec animation) --- */}
-        <div className="md:hidden w-full h-87.5 mt-25 flex items-center flex-col overflow-hidden px-2">
+        <div className="md:hidden w-full h-100 mt-2 flex items-center flex-col overflow-hidden px-2">
           <div
             className="relative overflow-hidden rounded-2xl bg-gray-50 w-full h-full shadow-lg border border-gray-100 touch-none cursor-pointer"
             onMouseEnter={handlePause}

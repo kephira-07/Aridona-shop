@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Search, ShoppingCart, User, Menu, X, Heart,ChevronRight } from 'lucide-react';
 import Collection from './Collection';
-import logoAridona from '../assets/logoAridonaC.svg';
+
 import logo2 from '../assets/logo2.svg';
 
 // --- COMPOSANT HEADER (BARRE DE NAVIGATION) ---
@@ -31,19 +31,17 @@ export default function Header() {
 
   return (
     <div>
+      
       <header
-        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-          isScrolled ? 'bg-white/95 backdrop-blur-md shadow-sm' : 'bg-white'
+        className={`fixed top-8 w-full z-50 transition-all h-[150px] duration-300 ${
+          isScrolled ? '  bg-white/95 h-[80px] mt-0 backdrop-blur-md shadow-sm' : 'bg-white '
         }`}
       >
-       {/* --- BANDEAU ANNONCE (Optionnel) --- */}
-        <div className="bg-amber-950 text-white text-xs text-center py-2  font-light tracking-widest hidden md:block">
-          LIVRAISON OFFERTE À PARTIR DE 150fcf D'ACHAT
-        </div>
+    
       
 
         {/* --- MAIN NAVBAR --- */}
-        <div className="max-w-7xl mx-auto px-4 mt-5 sm:px-6 lg:px-8">
+        <div className="max-w-15xl mx-auto px-1.5 m-1 sm:px-2 lg:px-3">
           
           {/* VERSION PC (Cachée sur Mobile) */}
           <div className="hidden md:flex items-center justify-between h-24 transition-all duration-300">
@@ -51,7 +49,7 @@ export default function Header() {
             <div className={`font-serif text-3xl tracking-widest text-amber-600 transition-all duration-500 ${isScrolled ? 'scale-90' : 'scale-100'}`}>
              <div className="flex items-center justify-self-start cursor-pointer">
                        <img 
-                         src={logoAridona} 
+                         src={logo2} 
                          alt="Logo" 
                          className={`transition-all duration-1000 ease-in-out object-contain overflow-hidden ${
                            isScrolled 
@@ -99,7 +97,7 @@ export default function Header() {
           </div>
 
           {/* VERSION MOBILE (Cachée sur PC) - Basée sur ton design Grid 2x5 */}
-          <div className="md:hidden w-full h-35 py-3">
+          <div className="md:hidden w-full h-30 py-3">
             <div className="grid grid-rows-[50px_2fr_75px] grid-cols-5 gap-y-4 gap-x-2 items-center">
               
               {/* Ligne 1 : Logo (Col 1-2) et Icônes (Col 3-5) */}
