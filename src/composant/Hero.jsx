@@ -60,7 +60,7 @@ export default function Hero() {
         </div>
 
         {/* --- CARROUSEL MOBILE (Ton design avec animation) --- */}
-        <div className="md:hidden w-full h-130  flex items-center flex-col overflow-hidden px-2">
+        <div className="md:hidden w-full h-130 pt-25 flex items-center flex-col overflow-hidden px-2">
           <div
             className="relative overflow-hidden rounded-2xl bg-gray-50 w-full h-full shadow-lg border border-gray-100 touch-none cursor-pointer"
        
@@ -76,7 +76,7 @@ export default function Hero() {
                     src={item.src} 
                     alt={item.title}  
                     className={`w-full h-full object-cover transition-transform duration-[4000ms] `}  
-                    draggable="false" 
+                   
                   />
                   {/* Overlay avec titre */}
                   <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/60 to-transparent">
