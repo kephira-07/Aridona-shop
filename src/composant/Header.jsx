@@ -10,6 +10,7 @@ export default function Header() {
   
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  
 
   // Gestion du scroll ultra-légère
   useEffect(() => {
@@ -33,35 +34,31 @@ export default function Header() {
     <div>
       
       <header
-        className={`fixed top-8 w-full z-50 transition-all h-[150px] duration-300 ${
-          isScrolled ? '  bg-white/95 h-[80px] mt-0 backdrop-blur-md shadow-sm' : 'bg-white '
+        className={`fixed top-8 w-full z-50 transition-all  duration-300 ${
+          isScrolled ? '  bg-white/95 h-25  backdrop-blur-md shadow-sm' : 'bg-white h-30 '
         }`}
       >
     
       
 
         {/* --- MAIN NAVBAR --- */}
-        <div className="max-w-15xl mx-auto px-1.5 m-1 sm:px-2 lg:px-3">
+        <div className="max-w-15xl mx-auto px-5 m-1 sm:px-2 lg:px-3">
           
           {/* VERSION PC (Cachée sur Mobile) */}
-          <div className="hidden md:flex items-center justify-between h-24 transition-all duration-300">
+          <div className="hidden md:flex items-center justify-between h-24 transition-all duration-300 ">
             {/* Logo Arilona (Texte stylisé pour l'exemple, à remplacer par ton img) */}
-            <div className={`font-serif text-3xl tracking-widest text-amber-600 transition-all duration-500 ${isScrolled ? 'scale-90' : 'scale-100'}`}>
-             <div className="flex items-center justify-self-start cursor-pointer">
+            <div className={`font-serif tracking-widest text-amber-600 transition-all mt-5 duration-500 ${isScrolled ? 'scale-90' : 'scale-130'}`}>
+             <div className="flex items-center justify-self-start cursor-pointer h-50 w-50">
                        <img 
                          src={logo2} 
                          alt="Logo" 
-                         className={`transition-all duration-1000 ease-in-out object-contain overflow-hidden ${
-                           isScrolled 
-                             ? 'h-30 w-auto' // Taille réduite au scroll
-                             : 'h-40 w-auto' // Taille imposante au début
-                         }`}
+                         className={`transition-all duration-1000 ease-in-out object-contain overflow-hidden `}
                        />
                      </div>
             </div>
 
             {/* Barre de recherche (BazarChic style : centrale et large) */}
-            <div className="flex-1 max-w-2xl mx-12">
+            <div className={`flex-1 max-w-2xl mx-12 ${isScrolled ? 'scale-90' : 'scale-100'}`}>
               <div className="relative group">
                 <input
                   type="text"
@@ -88,17 +85,17 @@ export default function Header() {
           </div>
 
           {/* BARRE DE CATÉGORIES PC (Cachée sur scroll ou maintenue selon le choix) */}
-          <div className={`hidden md:flex items-center justify-center gap-10 pb-4 transition-all duration-300 origin-top `}>
+          {/* <div className={`hidden md:flex items-center justify-center gap-10 pb-4 transition-all duration-300 origin-top  }`}>
             {['Nouveautés', 'Bagues', 'Colliers', 'Bracelets', 'Mariage', 'Offres'].map((item) => (
               <a key={item} href="#" className="text-sm font-medium text-gray-600 hover:text-amber-500 uppercase tracking-wider transition-colors">
                 {item}
               </a>
-            ))}
-          </div>
+            ))} 
+          </div> */}
 
           {/* VERSION MOBILE (Cachée sur PC) - Basée sur ton design Grid 2x5 */}
-          <div className="md:hidden w-full h-30 py-3">
-            <div className="grid grid-rows-[50px_2fr_75px] grid-cols-5 gap-y-4 gap-x-2 items-center">
+          <div className="md:hidden w-full  ">
+            <div className="grid grid-rows-[50px_2fr_75px] grid-cols-5  items-center">
               
               {/* Ligne 1 : Logo (Col 1-2) et Icônes (Col 3-5) */}
               <div className="col-span-2 font-serif text-xl tracking-widest text-amber-600 truncate px-1">
@@ -110,14 +107,14 @@ export default function Header() {
                         
               </div>
               <button className="col-span-1 flex justify-center p-2 text-gray-700 hover:bg-gray-100 rounded-full relative transition-colors">
-                <ShoppingCart className="w-6 h-6" />
+                <ShoppingCart className="w-5 h-5" />
                 <span className="absolute top-0 right-1 w-4 h-4 bg-amber-500 text-white text-[10px] flex items-center justify-center rounded-full font-bold">2</span>
               </button>
               <button className="col-span-1 flex justify-center p-2 text-black hover:bg-gray-100 rounded-full transition-colors">
-                <User className="w-6 h-6" />
+                <User className="w-5 h-5" />
               </button>
               <button className="col-span-1 flex justify-center p-2 text-black hover:bg-gray-100 rounded-full transition-colors">
-                <Heart className="w-6 h-6" />
+                <Heart className="w-5 h-5" />
               </button>
 
               {/* Ligne 2 : Menu Burger (Col 1) et Recherche (Col 2-5) */}

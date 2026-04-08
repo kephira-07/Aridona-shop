@@ -24,26 +24,25 @@ export default function Hero() {
 
   // --- LOGIQUE DE TON CARROUSEL MOBILE ---
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+ 
 
   const nextSlide = useCallback(() => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
   }, [images.length]);
 
   useEffect(() => {
-    if (isPaused) return;
+  
     const intervalId = setInterval(nextSlide, 2000); // 4 secondes
     return () => clearInterval(intervalId);
-  }, [isPaused, nextSlide]);
+  }, [ nextSlide]);
 
-  const handlePause = () => setIsPaused(true);
-  const handleResume = () => setIsPaused(false);
+  
   return (  
-    <main className=" md:pt-30  mt-15 bg-[#fffaf5] h-[800px]">
+    <main className=" pt-40 bg-[#fffaf5] h-170">
       <div className="max-w-10xl mx-auto px-1.5  h-full flex flex-col justify-center">
        
         {/* --- GRILLE PC --- */}
-        <div className="hidden md:grid grid-cols-4 grid-rows-2 gap-2 h-[450px]">
+        <div className="hidden md:grid grid-cols-4 grid-rows-2 gap-2 h-100">
           <div className="col-span-2 row-span-2 relative overflow-hidden group ">
             <img src={images[0].src} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Bijou" />
             <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
@@ -61,13 +60,10 @@ export default function Hero() {
         </div>
 
         {/* --- CARROUSEL MOBILE (Ton design avec animation) --- */}
-        <div className="md:hidden w-full h-100 mt-2 flex items-center flex-col overflow-hidden px-2">
+        <div className="md:hidden w-full h-130  flex items-center flex-col overflow-hidden px-2">
           <div
             className="relative overflow-hidden rounded-2xl bg-gray-50 w-full h-full shadow-lg border border-gray-100 touch-none cursor-pointer"
-            onMouseEnter={handlePause}
-            onMouseLeave={handleResume}
-            onTouchStart={handlePause}
-            onTouchEnd={handleResume}
+       
           >
             {/* Bande défilante */}
             <div
@@ -79,7 +75,7 @@ export default function Hero() {
                   <img 
                     src={item.src} 
                     alt={item.title}  
-                    className={`w-full h-full object-cover transition-transform duration-[4000ms] ${isPaused ? 'scale-105' : 'scale-100'}`}  
+                    className={`w-full h-full object-cover transition-transform duration-[4000ms] `}  
                     draggable="false" 
                   />
                   {/* Overlay avec titre */}
