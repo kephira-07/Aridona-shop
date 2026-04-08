@@ -38,7 +38,7 @@ export default function Hero() {
 
   
   return (  
-    <main className="md:pt-40  bg-[#fffaf5] h-170">
+    <main className="md:pt-45  bg-[#fffaf5] h-170">
       <div className="max-w-10xl mx-auto px-1.5  h-full flex flex-col justify-center">
        
         {/* --- GRILLE PC --- */}
