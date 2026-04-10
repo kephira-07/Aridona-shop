@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Search, ShoppingCart, User, Menu, Heart, ChevronRight, MessageCircle, Truck, ShieldCheck, Sparkles, ChevronDown, ChevronUp } from 'lucide-react';
+import Header from './Header';
+import BandeAnnonce from './BandeAnnonce';
 
 export default function PageProduit() {
  const [mainImage, setMainImage] = useState(PRODUCT.images[0]);
@@ -20,31 +22,11 @@ export default function PageProduit() {
     window.open(whatsappUrl, '_blank');
   };
 
-  // --- COMPOSANT HEADER (Rappel) ---
-  const Header = () => (
-    <header className="sticky top-0 z-40 bg-white border-b border-[#EAE0D5]">
-         <div className="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
-           <div className="flex items-center gap-4">
-             <Menu className="w-6 h-6 text-gray-800 md:hidden" />
-             <h1 className="font-serif text-2xl tracking-widest text-[#7B5C46]">ARIDONA</h1>
-           </div>
-           <div className="hidden md:flex gap-8 text-sm uppercase tracking-widest text-gray-500">
-             <a href="/" className="hover:text-[#7B5C46] transition-colors">Accueil</a>
-             <a href="/boutique" className="text-[#7B5C46] font-medium border-b border-[#7B5C46]">Boutique</a>
-             <a href="#" className="hover:text-[#7B5C46] transition-colors">Univers</a>
-           </div>
-           <div className="flex items-center gap-4 text-gray-800">
-             <Search className="w-5 h-5 cursor-pointer hover:text-[#7B5C46]" />
-             <User className="w-5 h-5 cursor-pointer hover:text-[#7B5C46]" />
-             <ShoppingCart className="w-5 h-5 cursor-pointer hover:text-[#7B5C46]" />
-           </div>
-         </div>
-       </header>
-  );
-
+ 
   return (
     <div className="min-h-screen bg-white font-sans text-gray-900">
-      <Header />
+     <BandeAnnonce/>
+     <Header/>
 
       {/* --- FIL D'ARIANE (Breadcrumb) --- */}
       <div className="max-w-7xl mx-auto px-4 py-6">

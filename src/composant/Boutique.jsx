@@ -1,26 +1,28 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Search, ShoppingCart, User, Menu, X, Heart, SlidersHorizontal, ChevronDown } from 'lucide-react';
+import Header from './Header';
+import BandeAnnonce from './BandeAnnonce';
+import bijou1 from'../assets/bijoux1.jpg';
+import bijou2 from'../assets/bijoux2.jpg';
+import bijou3 from'../assets/bijoux3.jpg';
+import bijou4 from'../assets/bijoux4.jpg';
+import bijou5 from'../assets/bijoux5.jpg';
+import bijou6 from'../assets/bijoux6.jpg';
+import bijou7 from'../assets/bijoux7.jpg';
+
+
+import im1 from '../assets/im1.jpg'; 
+import img2 from '../assets/img2.jpg';
+import img3 from '../assets/img3.jpg';
+
+ import img5 from '../assets/img5.jpg';
+  import img6 from '../assets/img6.jpg';
+ import img7 from '../assets/img7.jpg';
+ import img8 from '../assets/img8.jpg'; 
+
+
  
-  const Header = () => (
-    <header className="sticky top-0 z-40 bg-white border-b border-[#EAE0D5]">
-      <div className="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <Menu className="w-6 h-6 text-gray-800 md:hidden" />
-          <h1 className="font-serif text-2xl tracking-widest text-[#7B5C46]">ARIDONA</h1>
-        </div>
-        <div className="hidden md:flex gap-8 text-sm uppercase tracking-widest text-gray-500">j
-          <a href="/" className="hover:text-[#7B5C46] transition-colors">Accueil</a>
-          <a href="/boutique" className="text-[#7B5C46] font-medium border-b border-[#7B5C46]">Boutique</a>
-       
-        </div>
-        <div className="flex items-center gap-4 text-gray-800">
-          <Search className="w-5 h-5 cursor-pointer hover:text-[#7B5C46]" />
-          <User className="w-5 h-5 cursor-pointer hover:text-[#7B5C46]" />
-          <ShoppingCart className="w-5 h-5 cursor-pointer hover:text-[#7B5C46]" />
-        </div>
-      </div>
-    </header>
-  );
+ 
 
 export default function Boutique() {
  const [selectedCategory, setSelectedCategory] = useState("Toutes");
@@ -65,17 +67,19 @@ export default function Boutique() {
 
   return (
     <div className="min-h-screen bg-white font-sans text-gray-900">
-      <Header />
+      <BandeAnnonce/>
+     <Header/>
+      
 
       {/* --- EN-TÊTE DE LA PAGE BOUTIQUE --- */}
-      <div className="bg-[#FAF6F0] py-12 px-4 text-center">
-        <h2 className="text-4xl font-serif text-[#7B5C46] mb-4">Notre Boutique</h2>
-        <p className="text-gray-500 font-light max-w-2xl mx-auto">
-          Découvrez nos collections épurées. L'alliance parfaite entre l'argent, l'acier inoxydable et la douceur des perles.
+      <div className="bg-[#ffffffd3] mt-35 py-2 px-4 text-center">
+        <h2 className="text-4xl font-stretch-50% text-[#d14f09] mb-2">Notre Boutique</h2>
+        <p className="text-gray-800 font-semibold max-w-2xl mx-auto">
+          Decouvrez nos bijoux uniques adaptés à vos besoin
         </p>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 py-8 flex flex-col md:flex-row gap-8">
+      <div className="max-w-10xl mx-auto px-4 py-8 flex flex-col md:flex-row gap-5">
         
         {/* --- BARRE D'OUTILS MOBILE (Bouton Filtre) --- */}
         <div className="md:hidden flex justify-between items-center pb-4 border-b border-gray-100">
@@ -98,7 +102,7 @@ export default function Boutique() {
           <div className="flex justify-between items-center md:hidden mb-8">
             <h3 className="font-serif text-xl text-[#7B5C46]">Filtres</h3>
             <button onClick={() => setIsMobileFilterOpen(false)} className="p-2 rounded-full bg-gray-100">
-              <X className="w-5 h-5 text-gray-600" />
+              <X className="w-5 h-5 text-gray-800" />
             </button>
           </div>
 
@@ -107,7 +111,7 @@ export default function Boutique() {
             <h4 className="text-sm font-bold uppercase tracking-widest text-gray-900 mb-4 flex items-center justify-between">
               Catégories
             </h4>
-            <ul className="space-y-3 font-light text-gray-600">
+            <ul className="space-y-3 font-semibold text-gray-800">
               {CATEGORIES.map(cat => (
                 <li key={cat}>
                   <button 
@@ -124,7 +128,7 @@ export default function Boutique() {
           {/* Filtre: Matières */}
           <div className="mb-10">
             <h4 className="text-sm font-bold uppercase tracking-widest text-gray-900 mb-4">Matières</h4>
-            <div className="space-y-3 font-light text-gray-600">
+            <div className="space-y-3 font-semibold text-gray-800">
               {MATERIALS.map(mat => (
                 <label key={mat} className="flex items-center gap-3 cursor-pointer group">
                   <div className={`w-4 h-4 rounded border flex items-center justify-center transition-colors ${selectedMaterials.includes(mat) ? 'bg-[#7B5C46] border-[#7B5C46]' : 'border-gray-300 group-hover:border-[#7B5C46]'}`}>
@@ -184,18 +188,18 @@ export default function Boutique() {
         {/* --- GRILLE DE PRODUITS --- */}
         <main className="flex-1">
           <div className="hidden md:flex justify-between items-center mb-6">
-            <p className="text-sm text-gray-500 font-light">{filteredProducts.length} créations trouvées</p>
-            <div className="flex items-center gap-2 text-sm text-gray-600 font-light cursor-pointer">
+            <p className="text-sm text-gray-500 font-semibold">{filteredProducts.length} créations trouvées</p>
+            <div className="flex items-center gap-2 text-sm text-gray-800 font-semibold cursor-pointer">
               Trier par : <span className="font-medium text-gray-900">Nouveautés</span> <ChevronDown className="w-4 h-4" />
             </div>
           </div>
 
           {filteredProducts.length > 0 ? (
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-10 md:gap-x-8 md:gap-y-12">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-2 gap-y-5 md:gap-x-2 md:gap-y-1">
               {filteredProducts.map(product => (
-               <a href={`/boutique/pageProduit/${product.id}`} key={product.id}>
+               <a href={`/boutique/pageProduit/${product.id}`}>
                 <div className="group cursor-pointer flex flex-col">
-                  <div className="relative overflow-hidden bg-[#FAF6F0] rounded-xl aspect-[4/5] mb-4">
+                  <div className="relative overflow-hidden bg-[#FAF6F0] rounded-xl aspect-5/5 mb-4">
                     <img 
                       src={product.img} 
                       alt={product.name} 
@@ -221,7 +225,7 @@ export default function Boutique() {
                 <Search className="w-8 h-8 text-[#7B5C46] opacity-50" />
               </div>
               <h3 className="text-xl font-serif text-gray-900 mb-2">Aucune création trouvée</h3>
-              <p className="text-gray-500 font-light">Essayez de modifier vos filtres pour voir plus de bijoux.</p>
+              <p className="text-gray-500 font-semibold">Essayez de modifier vos filtres pour voir plus de bijoux.</p>
               <button 
                 onClick={() => { setSelectedCategory("Toutes"); setSelectedMaterials([]); setPriceRange({min: 0, max: 300}); }}
                 className="mt-6 px-6 py-2 border border-[#7B5C46] text-[#7B5C46] rounded-full hover:bg-[#7B5C46] hover:text-white transition-colors"
@@ -239,15 +243,20 @@ export default function Boutique() {
 // --- DONNÉES SIMULÉES (Mock Data) ---
 // Dans un vrai site, ces données viendraient de ton serveur/base de données
 const PRODUCTS = [
-  { id: 1, name: "Bague Éternité Or & Perle", category: "Bagues", material: "Perle", price: 120, img: "https://images.unsplash.com/photo-1605100804763-247f67b6348e?auto=format&fit=crop&q=80&w=600" },
-  { id: 2, name: "Collier Minimaliste Goutte", category: "Colliers", material: "Acier Inoxydable", price: 45, img: "https://images.unsplash.com/photo-1599643478514-4a11011c289e?auto=format&fit=crop&q=80&w=600" },
-  { id: 3, name: "Boucles d'oreilles Célestes", category: "Boucles d'oreilles", material: "Argent", price: 85, img: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&q=80&w=600" },
-  { id: 4, name: "Bracelet Jonc Torsadé", category: "Bracelets", material: "Acier Inoxydable", price: 55, img: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&q=80&w=600" },
-  { id: 5, name: "Peigne Cheveux Nacre", category: "Bijoux de cheveux", material: "Perle", price: 150, img: "https://images.unsplash.com/photo-1515562141207-7a8ef1c09930?auto=format&fit=crop&q=80&w=600" },
-  { id: 6, name: "Collier Pendentif Lune", category: "Colliers", material: "Argent", price: 95, img: "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?auto=format&fit=crop&q=80&w=600" },
-  { id: 7, name: "Bague Acier Martelé", category: "Bagues", material: "Acier Inoxydable", price: 35, img: "https://images.unsplash.com/photo-1605100804763-247f67b6348e?auto=format&fit=crop&q=80&w=600" },
-  { id: 8, name: "Diadème Floral Perlé", category: "Bijoux de cheveux", material: "Argent", price: 210, img: "https://images.unsplash.com/photo-1515562141207-7a8ef1c09930?auto=format&fit=crop&q=80&w=600" },
-  { id: 9, name: "Créoles Épaisses", category: "Boucles d'oreilles", material: "Acier Inoxydable", price: 40, img: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&q=80&w=600" },
+  { id: 1, name: "Bague Éternité Or & Perle", category: "Bagues", material: "Perle", price: 120, img: bijou1 },
+  { id: 2, name: "Collier Minimaliste Goutte", category: "Colliers", material: "Acier Inoxydable", price: 45, img:bijou2 },
+  { id: 3, name: "Boucles d'oreilles Célestes", category: "Boucles d'oreilles", material: "Argent", price: 85, img:bijou3},
+  { id: 4, name: "Bracelet Jonc Torsadé", category: "Bracelets", material: "Acier Inoxydable", price: 55, img:bijou4 },
+  { id: 5, name: "Peigne Cheveux Nacre", category: "Bijoux de cheveux", material: "Perle", price: 150, img:bijou5},
+  { id: 6, name: "Collier Pendentif Lune", category: "Colliers", material: "Argent", price: 95, img:bijou6 },
+  { id: 7, name: "Bague Acier Martelé", category: "Bagues", material: "Acier Inoxydable", price: 35, img:bijou7 },
+  { id: 8, name: "Diadème Floral Perlé", category: "Bijoux de cheveux", material: "Argent", price: 210, img:img2 },
+  { id: 9, name: "Créoles Épaisses", category: "Boucles d'oreilles", material: "Acier Inoxydable", price: 40, img: img3},
+  { id: 10, name: "Collier Minimaliste Goutte", category: "Colliers", material: "Acier Inoxydable", price: 45, img:img5 },
+  { id: 11, name: "Boucles d'oreilles Célestes", category: "Boucles d'oreilles", material: "Argent", price: 85, img:img6},
+  { id: 12, name: "Bracelet Jonc Torsadé", category: "Bracelets", material: "Acier Inoxydable", price: 55, img:img7},
+  { id: 13, name: "Peigne Cheveux Nacre", category: "Bijoux de cheveux", material: "Perle", price: 150, img:img8},
+  { id: 14, name: "Collier Pendentif Lune", category: "Colliers", material: "Argent", price: 95, img:im1 },
 ];
 
 const CATEGORIES = ["Toutes", "Bagues", "Colliers", "Boucles d'oreilles", "Bracelets", "Bijoux de cheveux"];
