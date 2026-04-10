@@ -17,14 +17,15 @@ const router = createBrowserRouter([
     path: "boutique",
     element: <Boutique />,
     
-    children: [
-      {
-        path: "pageProduit/:productId",
-        element: <PageProduit />,
-      },
-    ],
+    
   },
-]);
+      {
+        path: "boutique/pageProduit/:productId",
+        element: <PageProduit />,
+      }
+    ],
+  
+);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

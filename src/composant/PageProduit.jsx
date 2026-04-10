@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState ,useParams} from 'react';
 import { Search, ShoppingCart, User, Menu, Heart, ChevronRight, MessageCircle, Truck, ShieldCheck, Sparkles, ChevronDown, ChevronUp } from 'lucide-react';
 import Header from './Header';
 import BandeAnnonce from './BandeAnnonce';
+
 
 export default function PageProduit() {
  const [mainImage, setMainImage] = useState(PRODUCT.images[0]);
@@ -10,6 +11,7 @@ export default function PageProduit() {
 
   // --- LOGIQUE WHATSAPP ---
   const handleWhatsAppOrder = () => {
+    const {id} = useParams();
     // Numéro de téléphone au format international (sans le +), ex pour le Togo : 228...
     const phoneNumber = "22890000000"; 
     const message = `Bonjour Arilona ✨,\n\nJe souhaite commander :\n*${PRODUCT.name}*\nMatière : ${PRODUCT.material}\nPrix : ${PRODUCT.price} F\n\nPouvez-vous m'indiquer les modalités de paiement et de livraison ? Merci !`;
@@ -27,14 +29,13 @@ export default function PageProduit() {
     <div className="min-h-screen bg-white font-sans text-gray-900">
      <BandeAnnonce/>
      <Header/>
+     
+     
 
       {/* --- FIL D'ARIANE (Breadcrumb) --- */}
       <div className="max-w-7xl mx-auto px-4 py-6">
         <nav className="flex items-center text-xs text-gray-400 uppercase tracking-wider font-light">
-          <a href="#" className="hover:text-[#7B5C46] transition-colors">Accueil</a>
-          <ChevronRight className="w-3 h-3 mx-2" />
-          <a href="#" className="hover:text-[#7B5C46] transition-colors">Boutique</a>
-          <ChevronRight className="w-3 h-3 mx-2" />
+        
           <a href="#" className="hover:text-[#7B5C46] transition-colors">{PRODUCT.category}</a>
           <ChevronRight className="w-3 h-3 mx-2" />
           <span className="text-[#7B5C46]">{PRODUCT.name}</span>

@@ -25,6 +25,7 @@ import img3 from '../assets/img3.jpg';
  
 
 export default function Boutique() {
+  
  const [selectedCategory, setSelectedCategory] = useState("Toutes");
   const [selectedMaterials, setSelectedMaterials] = useState([]);
   const [priceRange, setPriceRange] = useState({ min: 0, max: 300 });
