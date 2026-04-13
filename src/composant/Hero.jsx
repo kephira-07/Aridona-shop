@@ -1,4 +1,5 @@
 import React, { useState, useEffect,useCallback } from 'react';
+import {ChevronLeft ,ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 import im1 from '../assets/im1.jpg'; 
@@ -9,9 +10,52 @@ import img3 from '../assets/img3.jpg';
   import img6 from '../assets/img6.jpg';
  import img7 from '../assets/img7.jpg';
  import img8 from '../assets/img8.jpg'; 
+const slides= [ img2,img3,img5,img6,img7,img8,im1,];
+
+const Caroussel = ({children:slides,autoSlide = false,autoSlideInterval = 1000}) => {
+  const [curr,setCurr] = useState(0);
+  const prev =()=>{
+    setCurr(curr === 0 ? slides.length - 1 : curr - 1);
+  }
+  const next =()=>{
+    setCurr(curr === slides.length - 1 ? 0 : curr + 1);
+   
+  }
+   useEffect(()=>{
+      if(!autoSlide) return;
+      const slideInterval = setInterval(next,autoSlideInterval);
+      return () => clearInterval(slideInterval);
+    },[]);
+  return (
+    <div className="overflow-hidden relative">
+      <div className='flex transition-transform ease-out duration-500' style={{transform: `translateX(-${curr*100}%)`}}>{slides}</div>
+      <div className='absolute inset-0 flex items-center justify-between p-4'>
+        <button className='p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white' onClick={prev}><ChevronLeft size={40}></ChevronLeft></button>
+        <button className='p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white' onClick={next}><ChevronRight size={40}></ChevronRight></button>
+      </div>
+      <div className='absolute bottom-4 right-0 left-0'>
+        <div className='flex items-center justify-center gap-2'>
+          {slides.map((_, index) => (
+            <div
+              key={index}
+              className={`w-3 h-3 rounded-full transition-all ${index === curr ? 'p-2' : 'bg-opacity-50'}`}
+            />
+          ))}
+        </div>
+      </div>
+
+    </div>
+  
+  );
+};
 
 export default function Hero() {
-     const images= [
+    
+
+  
+ 
+
+    const images= [
     { id: 1, src: img2, title: 'Bague Éclat Éternel' },
     { id: 2, src: img3, title: 'Alliance Or Pur' },
     { id: 3, src: img5, title: 'Collier Signature Arilona' },
@@ -21,20 +65,6 @@ export default function Hero() {
     { id: 7, src: im1, title: 'Fin' },
     
   ];
-
-  // --- LOGIQUE DE TON CARROUSEL MOBILE ---
-  const [currentIndex, setCurrentIndex] = useState(0);
- 
-
-  const nextSlide = useCallback(() => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-  }, [images.length]);
-
-  useEffect(() => {
-  
-    const intervalId = setInterval(nextSlide, 2000); // 4 secondes
-    return () => clearInterval(intervalId);
-  }, [ nextSlide]);
 
   
   return (  
@@ -61,35 +91,10 @@ export default function Hero() {
 
         {/* --- CARROUSEL MOBILE (Ton design avec animation) --- */}
         <div className="md:hidden w-full h-130 pt-25 flex items-center flex-col overflow-hidden px-2">
-          <div
-            className="relative overflow-hidden rounded-2xl bg-gray-50 w-full h-full shadow-lg border border-gray-100 touch-none cursor-pointer"
-       
-          >
-            {/* Bande défilante */}
-            <div
-              className="flex h-full transition-transform duration-500 ease-out"
-              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-            >
-              {images.map((item) => (
-                <div key={item.id} className="shrink-0 w-full h-full relative">
-                  <img 
-                    src={item.src} 
-                    alt={item.title}  
-                    className={`w-full h-full object-cover transition-transform duration-[4000ms] `}  
-                   
-                  />
-                  {/* Overlay avec titre */}
-                  <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/60 to-transparent">
-                    <p className="text-white text-center text-sm uppercase tracking-widest font-light drop-shadow-md">
-                      {item.title}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          <Caroussel autoSlide={true} >
+            {slides.map((s)=>(<img src={s}></img>))}
+          </Caroussel>
         </div>
-
         {/* Bouton Global */}
         <div className="mt-5 text-center">
             <Link 
