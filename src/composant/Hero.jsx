@@ -18,7 +18,7 @@ const Caroussel = ({children:slides,autoSlide = false,autoSlideInterval = 1000})
     setCurr(curr === 0 ? slides.length - 1 : curr - 1);
   }
   const next =()=>{
-    setCurr(curr === slides.length - 1 ? 0 : curr + 1);
+    setCurr(curr === 0?slides.length - 1 ? 0 : curr + 1);
    
   }
    useEffect(()=>{
