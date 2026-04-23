@@ -1,10 +1,14 @@
 import React from 'react'
 import { Search, ShoppingCart, User, Menu, X, Heart,ChevronRight } from 'lucide-react';
+
+import bijou1 from'../assets/bijoux1.jpg';
+import bijou2 from'../assets/bijoux2.jpg';
+import bijou3 from'../assets/bijoux3.jpg';
+import bijou4 from'../assets/bijoux4.jpg';
 export default function Collection() {
   return (
     <div>        
         <FeaturedProducts />
-      <BrandStory />
       <Footer />
      </div>
     )
@@ -12,13 +16,11 @@ export default function Collection() {
  
 // --- NOUVELLE SECTION : PRODUITS PHARES (Best Sellers) ---
 const FeaturedProducts = () => {
-  const products = [
-    { id: 1, name: "Bague Éclat Éternel", price: "850 F", img: "https://images.unsplash.com/photo-1605100804763-247f67b6348e?auto=format&fit=crop&q=80&w=600" },
-    { id: 2, name: "Collier Goutte d'Or", price: "1 200 F", img: "https://images.unsplash.com/photo-1599643478514-4a11011c289e?auto=format&fit=crop&q=80&w=600" },
-    { id: 3, name: "Boucles Célestes", price: "450 F", img: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&q=80&w=600" },
-    { id: 4, name: "Bracelet Jonc Arilona", price: "680 F", img: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&q=80&w=600" },
-  ];
-
+  const products = [ { id: 1, name: "Bague Éternité Or & Perle", category: "Bagues", material: "Perle", price: 120, img: bijou1 },
+    { id: 2, name: "Collier Minimaliste Goutte", category: "Colliers", material: "Acier Inoxydable", price: 45, img:bijou2 },
+    { id: 3, name: "Boucles d'oreilles Célestes", category: "Boucles d'oreilles", material: "Argent", price: 85, img:bijou3},
+    { id: 4, name: "Bracelet Jonc Torsadé", category: "Bracelets", material: "Acier Inoxydable", price: 55, img:bijou4 },
+  ]
   return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -74,49 +76,6 @@ const FeaturedProducts = () => {
   );
 };
 
-// --- NOUVELLE SECTION : SAVOIR-FAIRE (Brand Story) ---
-const BrandStory = () => {
-  return (
-    <section className="py-20 bg-[#f9f6f0]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row items-center gap-12 md:gap-20">
-          
-          {/* Image */}
-          <div className="w-full md:w-1/2 relative">
-            <div className="aspect-[4/5] md:aspect-square overflow-hidden rounded-t-full rounded-b-2xl">
-              <img 
-                src="https://images.unsplash.com/photo-1573408301145-b98c41dbe321?auto=format&fit=crop&q=80&w=800" 
-                alt="Savoir faire Arilona" 
-                className="w-full h-full object-cover"
-              />
-            </div>
-            {/* Badge flottant décoratif */}
-            <div className="absolute -bottom-6 -right-6 md:-bottom-8 md:-right-8 bg-white p-6 rounded-full shadow-xl hidden md:block">
-              <div className="w-24 h-24 border border-amber-200 rounded-full flex items-center justify-center text-center p-2">
-                <span className="font-serif text-amber-700 text-sm leading-tight">Fait avec<br/>passion</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Texte */}
-          <div className="w-full md:w-1/2 text-center md:text-left">
-            <h4 className="text-amber-600 text-sm font-bold tracking-widest uppercase mb-4">Notre Maison</h4>
-            <h2 className="text-3xl md:text-5xl font-serif text-gray-900 mb-6 leading-tight">L'Art de la<br />Haute Joaillerie</h2>
-            <p className="text-gray-600 mb-8 font-light leading-relaxed">
-              Chez Arilona, chaque pièce est façonnée à la main avec une attention méticuleuse portée aux détails. 
-              Nous sélectionnons les métaux les plus purs et les gemmes les plus rares pour créer des bijoux qui 
-              traversent le temps. Un mélange parfait entre tradition artisanale et design contemporain.
-            </p>
-            <button className="pb-1 border-b-2 border-amber-500 text-gray-900 font-medium hover:text-amber-600 hover:border-amber-600 transition-colors">
-              Découvrir notre histoire
-            </button>
-          </div>
-
-        </div>
-      </div>
-    </section>
-  );
-};
 
 // --- NOUVEAU COMPOSANT : FOOTER ---
 const Footer = () => {

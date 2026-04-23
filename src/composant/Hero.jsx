@@ -11,40 +11,66 @@ import img3 from '../assets/img3.jpg';
  import img7 from '../assets/img7.jpg';
  import img8 from '../assets/img8.jpg'; 
 const slides= [ img2,img3,img5,img6,img7,img8,im1,];
+const Caroussel = ({ children: slides, autoSlide = true, autoSlideInterval = 3000 }) => {
+  const [curr, setCurr] = useState(0);
 
-const Caroussel = ({children:slides,autoSlide = false,autoSlideInterval = 1000}) => {
-  const [curr,setCurr] = useState(0);
-  const prev =()=>{
-    setCurr(curr === 0 ? slides.length - 1 : curr - 1);
-  }
-  const next =()=>{
-    setCurr(curr === slides.length - 1 ? 0 : curr + 1);
-  }
-   useEffect(()=>{
-      if(!autoSlide) return;
-      const slideInterval = setInterval(next,autoSlideInterval);
-      return () => clearInterval(slideInterval);
-    },[]);
+  // Utilisation de la fonction callback de setState pour avoir toujours la dernière valeur
+  const prev = () => {
+    setCurr((curr) => (curr === 0 ? slides.length - 1 : curr - 1));
+  };
+
+  const next = useCallback(() => {
+    setCurr((curr) => (curr === slides.length - 1 ? 0 : curr + 1));
+  }, [slides.length]);
+
+  useEffect(() => {
+    if (!autoSlide) return;
+    
+    const slideInterval = setInterval(next, autoSlideInterval);
+    
+    // Le cleanup est essentiel pour ne pas accumuler les intervalles
+    return () => clearInterval(slideInterval);
+  }, [autoSlide, autoSlideInterval, next]); // Tableau de dépendances correct
+
   return (
-    <div className="overflow-hidden relative">
-      <div className='flex transition-transform ease-out duration-500' style={{transform: `translateX(-${curr*100}%)`}}>{slides}</div>
-      <div className='absolute inset-0 flex items-center justify-between p-4'>
-        <button className='p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white' onClick={prev}><ChevronLeft size={40}></ChevronLeft></button>
-        <button className='p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white' onClick={next}><ChevronRight size={40}></ChevronRight></button>
+    <div className="overflow-hidden relative w-full h-full">
+      <div 
+        className="flex transition-transform ease-out duration-500 h-full" 
+        style={{ transform: `translateX(-${curr * 100}%)` }}
+      >
+        {slides}
       </div>
-      <div className='absolute bottom-4 right-0 left-0'>
-        <div className='flex items-center justify-center gap-2'>
+      
+      {/* Contrôles Précédent / Suivant */}
+      <div className="absolute inset-0 flex items-center justify-between p-4 pointer-events-none">
+        <button 
+          className="p-1 rounded-full shadow bg-white/80 text-amber-600 hover:bg-amber-600 hover:text-white pointer-events-auto" 
+          onClick={prev}
+        >
+          <ChevronLeft size={20} />
+        </button>
+        <button 
+          className="p-1 rounded-full shadow bg-white/80 text-amber-600 hover:bg-amber-600 hover:text-white pointer-events-auto" 
+          onClick={next}
+        >
+          <ChevronRight size={20} />
+        </button>
+      </div>
+
+      {/* Indicateurs (Points) */}
+      <div className="absolute bottom-4 right-0 left-0">
+        <div className="flex items-center justify-center gap-2">
           {slides.map((_, index) => (
             <div
               key={index}
-              className={`w-3 h-3 rounded-full transition-all ${index === curr ? 'p-2' : 'bg-opacity-50'}`}
+              className={`w-3 h-3 rounded-full transition-all ${
+                index === curr ? "bg-amber-600 scale-125" : "bg-amber-600/50"
+              }`}
             />
           ))}
         </div>
       </div>
-
     </div>
-  
   );
 };
 
@@ -88,12 +114,17 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* --- CARROUSEL MOBILE (Ton design avec animation) --- */}
-        <div className="md:hidden w-full h-130 pt-25 flex items-center flex-col overflow-hidden px-2">
-          <Caroussel autoSlide={true} >
-            {slides.map((s)=>(<img src={s}></img>))}
-          </Caroussel>
-        </div>
+                 <div className="md:hidden w-full h-100 mt-17 rounded-2xl  flex items-center flex-col overflow-hidden">
+  <Caroussel autoSlide={true} autoSlideInterval={3000}>
+    {images.map((image) => (
+      <img 
+        key={image.id}   src={image.src}     
+        alt={image.title}       
+        className="min-w-full h-full object-cover" 
+      />
+    ))}
+  </Caroussel>
+</div>
         {/* Bouton Global */}
         <div className="mt-5 text-center">
             <Link 

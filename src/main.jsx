@@ -5,7 +5,7 @@ import App from './App.jsx'
 import {createBrowserRouter,RouterProvider,Outlet} from 'react-router-dom'
 import './index.css'
 import Collection from './composant/Collection.jsx'
-import Boutique from './composant/Boutique.jsx'
+import Boutique from './pages/Boutique.jsx'
 import PageProduit from './composant/PageProduit.jsx'
 
 const router = createBrowserRouter([

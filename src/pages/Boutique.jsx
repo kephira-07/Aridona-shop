@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Search, ShoppingCart, User, Menu, X, Heart, SlidersHorizontal, ChevronDown } from 'lucide-react';
-import Header from './Header';
-import BandeAnnonce from './BandeAnnonce';
+import Header from '../composant/Header';
+import BandeAnnonce from '../composant/BandeAnnonce';
 import bijou1 from'../assets/bijoux1.jpg';
 import bijou2 from'../assets/bijoux2.jpg';
 import bijou3 from'../assets/bijoux3.jpg';

@@ -2,7 +2,7 @@ import React from 'react'
 import Header from './composant/Header';
 import Hero from './composant/Hero';
 import Collection from './composant/Collection';
-import Boutique from './composant/Boutique';
+import Boutique from './pages/Boutique';
 import BandeAnnonce from './composant/BandeAnnonce';
 
 
